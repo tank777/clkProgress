@@ -32,6 +32,24 @@ public class ProgressDialog extends Activity {
         dialog.show();
     }
 
+    public static void show(final Activity activity, String text, int gravity){
+        dialog=new Dialog(activity);
+        dialog.setContentView(R.layout.dialog_progress);
+        RelativeLayout layoutMain=dialog.findViewById(R.id.layoutMain);
+        LinearLayout layoutProgress=dialog.findViewById(R.id.layoutProgress);
+        CircularProgress circularProgress=new CircularProgress(activity);
+        layoutProgress.addView(circularProgress);
+
+        textView=dialog.findViewById(R.id.textView);
+        textView.setText(text);
+
+        DialogMethods.setAnimation(activity, layoutMain);
+        DialogMethods.setWidth(activity, dialog);
+        DialogMethods.setGravity(dialog, gravity);
+
+        dialog.show();
+    }
+
     public static void show(final Activity activity, CircularProgress circularProgress, String text){
         dialog=new Dialog(activity);
         dialog.setContentView(R.layout.dialog_progress);
